@@ -420,6 +420,42 @@ describe('ReactPure.Forms', function() {
 
 			});
 
+			describe('props.tree set to array of input props objects with .label', function() {
+
+				var labels;
+
+				beforeEach(function() {
+
+					base.setProps({ tree: [
+						{ id: "foo", label: true },
+						{ id: "bar", label: "bar label" },
+						{ id: "baz" }
+					]});
+
+					labels = ReactTestUtils.scryRenderedDOMComponentsWithTag(base, 'label');
+
+				});
+
+				it('should have 2 labels', function() {
+
+					expect(labels.length).toBe(2);
+
+				});
+
+				it('first label should have props.children of id', function() {
+
+					expect(labels[0].props.children).toBe('foo');
+
+				});
+
+				it('second label should have props.children of overridden value', function() {
+
+					expect(labels[1].props.children).toBe('bar label');
+
+				});
+
+			});
+
 			describe('with props.id, .tree and .model set, ReactPure.Control children', function() {
 
 				var tree, model, controls;

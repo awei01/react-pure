@@ -74,19 +74,28 @@ Forms.Base = React.createClass({
 
 	renderContents: function() {
 
-		var tree = this.props.tree;
+		var tree = this.props.tree,
+			contents = [], me = this;
 
 		if (!_.isArray(tree) || !tree.length) {
 			return;
 		}
 
-		return tree.map(this.renderLeaf);
+		_.each(tree, function(element, index) {
+
+			contents = contents.concat(me.renderLeaf(element, index));
+
+		});
+
+		return contents;
 	},
 
 	renderLeaf: function(element, index) {
 
 		var elementId, idPrefix = this.props.id ? this.props.id + '_' : '',
-			modelValue, passedProps;
+			modelValue, passedProps,
+			label,
+			leaf = [];
 
 		if (React.isValidComponent(element)) {
 			element.props.key = index;
@@ -111,7 +120,23 @@ Forms.Base = React.createClass({
 
 		passedProps.id = idPrefix + passedProps.id;
 
-		return Forms.Control(passedProps);
+		if (passedProps.label) {
+			label = passedProps.label === true ? elementId : passedProps.label;
+
+			leaf.push(React.DOM.label({ forId: passedProps.id, key: 'label_' + index }, label));
+		}
+
+
+		leaf.push(Forms.Control(passedProps));
+
+		return leaf;
+	},
+
+	makeControlLabel: function(id, value) {
+
+		return (
+			React.DOM.label({ forId: id }, value)
+		);
 
 	},
 
