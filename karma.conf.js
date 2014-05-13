@@ -17,7 +17,12 @@ module.exports = function(config) {
     files: [
         'tests/react-phantomjs-shim.js',
         'bower_components/react/react-with-addons.js',
+        'bower_components/lodash/dist/lodash.js',
+        'bower_components/jquery/dist/jquery.js',
+        'bower_components/jasmine-jquery/lib/jasmine-jquery.js',
+        'src/namespace.js',
         'src/**/*.jsx',
+        'tests/helpers.js',
         'tests/**/*.spec.js'
     ],
 
@@ -31,7 +36,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-        "app/**/*.jsx": ['react-jsx']
+        "src/**/*.jsx": ['react-jsx']
     },
 
 
