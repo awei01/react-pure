@@ -1,0 +1,21 @@
+{
+  "name": "react-pure",
+  "version": "0.0.0",
+  "authors": [
+    "austin wei <awei01@gmail.com>"
+  ],
+  "description": "libary to render components using react and pure css",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.10.0"
+  },
+  "devDependencies": {
+  }
+}
